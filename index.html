@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgentView | AgentView</title>
+  <meta name="description" content="A local-first desktop and web app for browsing, searching, and analyzing your past AI coding sessions. See what your agents actually did across every project." />
+  <meta name="keywords" content="AI coding sessions, agent analytics, local-first, session search, token usage, developer tools, coding assistant history, SQLite, full-text search, session intelligence" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="AgentView | AgentView" />
+  <meta property="og:description" content="A local-first desktop and web app for browsing, searching, and analyzing your past AI coding sessions. See what your agents actually did across every project." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AgentView | AgentView" />
+  <meta name="twitter:description" content="A local-first desktop and web app for browsing, searching, and analyzing your past AI coding sessions. See what your agents actually did across every project." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AgentView",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "macOS, Windows, Linux",
+    "description": "A local-first desktop and web app for browsing, searching, and analyzing your past AI coding sessions. See what your agents actually did across every project.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <link rel="icon" id="favicon-link" href="data:," />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="./" aria-label="AgentView home">
+        <canvas id="brand-canvas" width="40" height="40" aria-hidden="true"></canvas>
+        <span class="brand__word">AgentView</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#quick-start">Quick Start</a>
+        <a href="#features">What It Does</a>
+        <a href="#usage">Token Usage</a>
+        <a href="#how">How It Works</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="eyebrow">Local-first session intelligence</p>
+        <h1 class="hero__title">AgentView</h1>
+        <p class="hero__lede">
+          A local-first desktop and web app for browsing, searching, and analyzing your past AI coding sessions.
+          See what your agents actually did across every project.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="https://mirofish.my/">Get Started</a>
+          <a class="btn btn--ghost" href="#quick-start">Read the quick start</a>
+        </div>
+        <ul class="hero__stats" aria-label="Highlights">
+          <li><strong>FTS search</strong> across prompts, replies, and tool calls</li>
+          <li><strong>Live sync</strong> while you work in your editor</li>
+          <li><strong>Private by default</strong> with optional team sync</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="quick-start" class="section section--tight">
+      <div class="section__inner">
+        <header class="section__head">
+          <h2>Quick Start</h2>
+          <p class="section__sub">
+            You can run AgentView as a desktop bundle, a lightweight CLI, or a local web server. Pick the path that fits how you work; all modes read the same on-disk session formats.
+          </p>
+        </header>
+        <div class="split">
+          <div>
+            <h3 class="h3">Desktop (recommended)</h3>
+            <p>
+              Install the desktop build for your platform. The app ships with an embedded UI, automatic updates, and the same indexing engine used by the CLI.
+            </p>
+          </div>
+          <div>
+            <h3 class="h3">CLI &amp; local server</h3>
+            <p>
+              Start a local server to browse sessions in your browser, run non-interactive reports, or pipe summaries into your own tooling.
+            </p>
+          </div>
+        </div>
+        <figure class="code-block">
+          <figcaption class="code-block__cap">Example: start the local server</figcaption>
+          <pre><code>agentview serve              # start server
+agentview serve --port 9090  # custom port
+agentview serve --no-browser # disable auto-open</code></pre>
+        </figure>
+        <p class="note">
+          The desktop app and CLI share the same data directory under your user profile, so you can mix both workflows without duplicating imports.
+        </p>
+      </div>
+    </section>
+
+    <section id="usage" class="section section--alt">
+      <div class="section__inner">
+        <header class="section__head">
+          <h2>Fast token usage and cost reports</h2>
+          <p class="section__sub">
+            When your history grows into thousands of sessions, ad-hoc scripts slow down. AgentView keeps a pre-indexed database so daily rollups return in well under a second, even on large corpora.
+          </p>
+        </header>
+        <figure class="code-block">
+          <figcaption class="code-block__cap">Example: daily usage table</figcaption>
+          <pre><code>agentview usage daily          # last 30 days, terminal table
+agentview usage daily --all    # full history, JSON-friendly
+agentview usage statusline     # compact “today” line for your shell</code></pre>
+        </figure>
+        <p>
+          Reports read the same normalized message records that power search and analytics, so numbers stay aligned with what you see in the transcript viewer.
+        </p>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section__inner">
+        <header class="section__head">
+          <h2>What it does</h2>
+          <p class="section__sub">
+            AgentView ingests the JSONL and sidecar files your coding agents emit, normalizes them into a structured timeline, and layers full-text search and analytics on top—without sending your transcripts to a hosted SaaS by default.
+          </p>
+        </header>
+        <div class="bento">
+          <article class="card card--wide">
+            <h3>Browse sessions</h3>
+            <p>
+              Scroll chronologically through every session, per workspace or across machines. Expand tool calls, thinking blocks, and file edits inline so you can reconstruct how a change actually landed.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Search everything</h3>
+            <p>
+              Full-text search across user prompts, assistant replies, stderr snippets, and tool payloads. Jump from a hit straight into surrounding context.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Session analytics</h3>
+            <p>
+              Heatmaps, tool-frequency charts, and per-project velocity help you see whether agents are accelerating delivery or getting stuck in retry loops.
+            </p>
+          </article>
+          <article class="card">
+            <h3>AI-assisted insights</h3>
+            <p>
+              Optional summarization turns long threads into short digests: what shipped, what broke, and what still needs a human decision—scoped to a repo or your entire corpus.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Multi-agent support</h3>
+            <p>
+              Parsers cover the major coding-agent formats. Session roots are discovered automatically so you spend less time wiring paths and more time reviewing outcomes.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Import chat exports</h3>
+            <p>
+              Bring in archived web-chat exports when you need a single place that mixes browser conversations with local agent transcripts.
+            </p>
+          </article>
+          <article class="card card--wide">
+            <h3>Runs locally</h3>
+            <p>
+              A compact SQLite database holds structured rows and FTS indexes. The embedded UI talks to a small REST surface with server-sent events for live refresh while files change on disk.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section--alt">
+      <div class="section__inner">
+        <header class="section__head">
+          <h2>How it works</h2>
+          <p class="section__sub">
+            Watch configured session directories, parse each agent’s JSONL stream, normalize messages and tool spans, then persist to SQLite with FTS5 for search. The SPA issues queries over HTTP and subscribes to change notifications when new lines append.
+          </p>
+        </header>
+        <ol class="steps">
+          <li><span class="steps__n">1</span> File watcher notices new or updated session files.</li>
+          <li><span class="steps__n">2</span> Format-specific parsers map records into a shared schema.</li>
+          <li><span class="steps__n">3</span> Indexes update incrementally so search stays hot.</li>
+          <li><span class="steps__n">4</span> The UI renders threads, charts, and exports from the same store.</li>
+        </ol>
+        <p>
+          For teams that want a shared view, an optional database sync path can replicate summaries and redacted metadata to a central server while keeping raw transcripts at the edge—configure retention and fields explicitly before turning it on.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="section__inner section__inner--narrow">
+        <h2>Who it is for</h2>
+        <p>
+          Staff engineers reviewing agent-driven refactors, platform teams auditing tool usage, and solo developers who simply want a fast, trustworthy archive of what the model tried yesterday. If your workflow already produces machine-readable logs, AgentView is the lens.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p><strong>AgentView</strong> — local-first session intelligence.</p>
+      <p class="muted">MIT-style licensing for the core tooling. Check your agent vendor’s terms for the underlying session data you import.</p>
+    </div>
+  </footer>
+
+  <script src="js/brand-canvas.js" defer></script>
+</body>
+</html>
